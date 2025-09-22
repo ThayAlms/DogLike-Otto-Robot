@@ -17,7 +17,7 @@ Perfeito para quem quer aprender:
 ## 📷 Visão Geral  
 
 <p align="center">
-<img src="media/vespa_bot.png" alt="Vespa Walking Robot" width="400">
+<img src="Media/Capa.jpeg" alt="Vespa Walking Robot" width="400">
 </p>
 
 Seu robô será capaz de:

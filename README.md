@@ -1,56 +1,56 @@
 # 🐶 DogLike Otto Robot + GC9A01 Display
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Platform](https://img.shields.io/badge/platform-Arduino-green)
-![Language](https://img.shields.io/badge/language-C%2B%2B-orange)
+![Platform](https://img.shields.io/badge/platform-Arduino-green.svg)
+![Language](https://img.shields.io/badge/language-C%2B%2B-orange.svg)
 
-Um projeto divertido e educacional para montar um **robô quadrúpede inspirado no Otto DIY**, mas com personalidade de cachorro (**DogLike Otto Robot**), usando a **RoboCore Vespa**, alimentado por **duas baterias 3.7 V**, e equipado com um **display circular GC9A01** para mostrar emoções enquanto o robô interage.  
+A fun and educational project to build a **quadruped robot inspired by Otto DIY**, but with a **dog-like personality** (**DogLike Otto Robot**), using the **RoboCore Vespa**, powered by **two 3.7V batteries**, and equipped with a **round GC9A01 display** to show emotions while the robot interacts.  
 
-Ele combina **controle de servo motores com PID**, **gaits de caminhada**, **expressões faciais no display** e **movimentos simples** para criar uma experiência muito mais envolvente.
-
----
-
-## 🐾 Funcionalidades  
-
-- 🚶 **Andar para frente** com movimento suave usando controle PID nas patas  
-- 🪑 **Sentar** (movimento estável das 4 pernas)  
-- ✋ **Dar a patinha** (levanta a pata dianteira direita e volta à posição)  
-- 🛏 **Deitar** (movimento gradual de relaxamento das patas)  
-- 😀 **Mostrar emoções** no display GC9A01 (olhos piscando e expressões felizes)
-
-> 💡 **Diferencial:** o uso de PID garante que as patas se movimentem suavemente e cheguem ao ângulo certo sem trancos, mesmo com variações de carga ou atrito.
+It combines **PID-controlled servo motors**, **walking gaits**, **facial expressions on the display**, and **simple movements** to create a highly engaging experience.
 
 ---
 
-## 📷 Visão Geral  
+## 🐾 Features  
+
+- 🚶 **Walk forward** with smooth motion using PID control on the legs  
+- 🪑 **Sit** (stable 4-leg movement)  
+- ✋ **Give a paw** (raise the front-right leg and return to position)  
+- 🛏 **Lie down** (gradual relaxation of the legs)  
+- 😀 **Display emotions** on the GC9A01 (blinking eyes and happy expressions)
+
+> 💡 **Highlight:** PID ensures legs move smoothly and reach the desired angles without jerks, even with variations in load or friction.
+
+---
+
+## 📷 Overview  
 
 <p align="center">
 <img src="Media/Capa.jpeg" alt="DogLike Otto Robot" width="400">
 </p>
 
-O resultado é um robô que parece ter **vida própria**, reagindo com expressões enquanto executa suas ações.
+The result is a robot that seems **alive**, reacting with expressions while performing actions.
 
 ---
 
-## 🔧 Componentes Necessários  
+## 🔧 Required Components  
 
-| Componente | Qtde | Observações |
-|-----------|------|-------------|
-| [RoboCore Vespa](https://www.robocore.net/) | 1 | Placa controladora |
-| Micro servo 9 g | 4 | Para as pernas |
-| Display GC9A01 1.28" | 1 | Interface SPI |
-| Bateria 18650 3.7 V | 2 | Alimentação |
-| Suporte para 2× 18650 | 1 | Com fios ou conector JST |
-| Parafusos M2 + porcas | 2 de cada | Para fixar o display |
-| Patinhas de TPU | 4 | Para melhor aderência no chão |
-| Parafusos dos servos | — | Normalmente vêm com o servo |
-| Cabo USB | 1 | Para programação |
+| Component | Qty | Notes |
+|-----------|-----|-------|
+| [RoboCore Vespa](https://www.robocore.net/) | 1 | Controller board |
+| Micro servo 9g | 4 | For the legs |
+| GC9A01 1.28" Display | 1 | SPI interface |
+| 18650 Battery 3.7V | 2 | Power supply |
+| 2×18650 Holder | 1 | With wires or JST connector |
+| M2 Screws + Nuts | 2 each | For fixing the display |
+| TPU Feet | 4 | Better grip on floor |
+| Servo Screws | — | Usually come with the servos |
+| USB Cable | 1 | For programming |
 
 ---
 
-## 🖥 Ligações  
+## 🖥 Connections  
 
-### 📺 Display GC9A01 → Vespa  
+### 📺 GC9A01 Display → Vespa  
 
 | Vespa | GC9A01 |
 |------|--------|
@@ -59,69 +59,69 @@ O resultado é um robô que parece ter **vida própria**, reagindo com expressõ
 | 16 (RST) | RST |
 | 22 (SCK) | SCL |
 | 21 (MOSI) | SDA |
-| 3.3 V | VCC |
+| 3.3V | VCC |
 | GND | GND |
 
 ### ⚙️ Servos → Vespa  
 
 | Vespa | Servo |
 |------|-------|
-| D0 | Servo 1 (Frente Esquerda) |
-| D1 | Servo 2 (Frente Direita) |
-| D2 | Servo 3 (Trás Esquerda) |
-| D3 | Servo 4 (Trás Direita) |
-| 5 V | VCC comum |
-| GND | GND comum |
+| D0 | Servo 1 (Front Left) |
+| D1 | Servo 2 (Front Right) |
+| D2 | Servo 3 (Rear Left) |
+| D3 | Servo 4 (Rear Right) |
+| 5V | Common VCC |
+| GND | Common GND |
 
-> 💡 **Dica:** use uma linha de alimentação separada para os servos se eles puxarem muita corrente — isso evita que a Vespa reinicie durante o movimento.
-
----
-
-## ⚙️ Controle PID das Patas  
-
-Cada servo tem seu ângulo corrigido usando **PID simples**:
-- **Kp** ajusta a força para chegar no ângulo desejado  
-- **Kd** suaviza o movimento, evitando overshoot  
-- Isso garante **caminhada fluida**, sem trancos e com resposta estável
+> 💡 **Tip:** Use a separate power line for servos if they draw too much current — prevents Vespa from resetting during movement.
 
 ---
 
-## 🛠 Montagem  
+## ⚙️ PID-Controlled Legs  
 
-- 🔩 **Servos:** prenda cada um com os parafusos que vêm no kit.  
-- 🐾 **Patinhas:** encaixe ou parafuse nas hastes dos servos para maior tração.  
-- 📺 **Display:** fixe o GC9A01 com **parafusos M2 + porcas** em um suporte 3D.  
-- 🔋 **Baterias:** use duas 18650 em série (≈ 7,4 V). A Vespa regula a tensão para si e para o display.  
-
----
-
-## 📂 Arquivos 3D  
-
-| Peça | Arquivo STL |
-|-----|-------------|
-| Patinhas de TPU | [`stl/pata_tpu.stl`](stl/pata_tpu.stl) |
-| Suporte do Display | [`stl/suporte_display.stl`](stl/suporte_display.stl) |
-
-> 📌 Basta clicar no link para baixar os arquivos e imprimir em TPU ou PLA.  
+Each servo angle is corrected using a **simple PID**:  
+- **Kp** adjusts the force to reach the desired angle  
+- **Kd** smooths the movement, avoiding overshoot  
+- Ensures **fluid walking**, no jerks, stable response
 
 ---
 
-## 🚀 Próximos Passos  
+## 🛠 Assembly  
 
-- [ ] Adicionar diagrama visual de fiação (`media/wiring.png`)  
-- [ ] Publicar código com gaits básicos  
-- [ ] Criar conjunto de faces para o display  
-- [ ] Documentar ajustes finos de PID para cada tipo de servo  
+- 🔩 **Servos:** attach each with screws provided in the kit  
+- 🐾 **Feet:** attach or screw onto servo horns for better traction  
+- 📺 **Display:** fix the GC9A01 with **M2 screws + nuts** on a 3D mount  
+- 🔋 **Batteries:** use two 18650 in series (~7.4V). Vespa regulates voltage for itself and the display
 
 ---
 
-## 📜 Licença  
+## 📂 3D Files  
 
-Este projeto está licenciado sob a [MIT License](LICENSE).  
-Sinta-se livre para usar, modificar e compartilhar!  
+| Part | STL File |
+|------|----------|
+| TPU Feet | [`stl/pata_tpu.stl`](stl/pata_tpu.stl) |
+| Display Mount | [`stl/suporte_display.stl`](stl/suporte_display.stl) |
+
+> 📌 Click the link to download files and print in TPU or PLA  
+
+---
+
+## 🚀 Next Steps  
+
+- [ ] Add wiring diagram (`media/wiring.png`)  
+- [ ] Publish code with basic gaits  
+- [ ] Create a set of faces for the display  
+- [ ] Document fine PID tuning for different servos  
+
+---
+
+## 📜 License  
+
+This project is licensed under the [MIT License](LICENSE).  
+Feel free to use, modify, and share!  
 
 ---
 
 <p align="center">
-💡 **Transforme este projeto no seu DogLike Otto e compartilhe no LinkedIn e GitHub!**  
-</p>
+💡 **Turn this project into your own DogLike Otto and share it on LinkedIn and GitHub!**  
+</p>  
